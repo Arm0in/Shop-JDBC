@@ -1,9 +1,7 @@
 package ir.maktab.shop.repository.impl;
 
 import ir.maktab.shop.base.repository.impl.BaseRepositoryImpl;
-import ir.maktab.shop.domain.Category;
 import ir.maktab.shop.domain.Customer;
-import ir.maktab.shop.repository.CategoryRepository;
 import ir.maktab.shop.repository.CustomerRepository;
 
 import java.sql.*;
@@ -95,5 +93,31 @@ public class CustomerRepositoryImpl extends BaseRepositoryImpl<Customer, Integer
     @Override
     public Boolean existsById(Integer integer) {
         return null;
+    }
+
+    @Override
+    public Customer findByUserName(String username, String password) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("select * from customers where username = ? and password = ?");
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Customer customer = new Customer();
+                customer.setId(resultSet.getInt(1));
+                customer.setUserName(resultSet.getString(2));
+                customer.setNationalCode(resultSet.getString(4));
+                customer.setBirthday(resultSet.getDate(5).toLocalDate());
+                customer.setStatus(resultSet.getBoolean(6));
+                customer.setBalance(resultSet.getBigDecimal(7));
+
+                return customer;
+            }
+            return null;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
     }
 }

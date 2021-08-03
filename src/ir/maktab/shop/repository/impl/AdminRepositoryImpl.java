@@ -3,13 +3,14 @@ package ir.maktab.shop.repository.impl;
 import ir.maktab.shop.base.repository.BaseRepository;
 import ir.maktab.shop.base.repository.impl.BaseRepositoryImpl;
 import ir.maktab.shop.domain.Admin;
+import ir.maktab.shop.repository.AdminRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class AdminRepositoryImpl extends BaseRepositoryImpl<Admin, Integer> implements ir.maktab.shop.repository.AdminRepository {
+public class AdminRepositoryImpl extends BaseRepositoryImpl<Admin, Integer> implements AdminRepository {
 
     public AdminRepositoryImpl(Connection connection) {
         super(connection);
@@ -103,5 +104,26 @@ public class AdminRepositoryImpl extends BaseRepositoryImpl<Admin, Integer> impl
     @Override
     public Boolean existsById(Integer integer) {
         return null;
+    }
+
+    @Override
+    public Admin findByUserName(String username, String password) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("select * from admins where username = ? and password = ?");
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Admin admin = new Admin();
+                admin.setId(resultSet.getInt(1));
+                admin.setUserName(resultSet.getString(2));
+                return admin;
+            }
+            return null;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
     }
 }

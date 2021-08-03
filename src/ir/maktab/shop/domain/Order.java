@@ -8,6 +8,9 @@ public class Order extends BaseEntity<Integer> {
     private Customer customer;
     private LocalDate orderDate;
 
+    public Order() {
+    }
+
     public Order(Customer customer, LocalDate orderDate) {
         this.customer = customer;
         this.orderDate = orderDate;

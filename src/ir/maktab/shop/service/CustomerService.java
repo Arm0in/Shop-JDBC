@@ -4,4 +4,5 @@ import ir.maktab.shop.base.service.BaseService;
 import ir.maktab.shop.domain.Customer;
 
 public interface CustomerService extends BaseService<Customer, Integer> {
+    Customer login(String username, String password);
 }
