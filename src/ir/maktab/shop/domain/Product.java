@@ -1,9 +1,10 @@
 package ir.maktab.shop.domain;
 
+import ir.maktab.shop.base.domain.BaseEntity;
+
 import java.math.BigDecimal;
 
-public class Product {
-    private int id;
+public class Product extends BaseEntity<Integer> {
     private String name;
     private String brand;
     private String description;
@@ -13,7 +14,7 @@ public class Product {
 
 
     public Product(int id, String name, String brand, String description, BigDecimal price, int stock, Category category) {
-        this.id = id;
+        super.setId(id);
         this.name = name;
         this.brand = brand;
         this.description = description;
@@ -25,7 +26,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product[" +
-                "id=" + id +
+                "id=" + super.getId() +
                 ", name='" + name + '\'' +
                 ", brand='" + brand + '\'' +
                 ", description='" + description + '\'' +
@@ -33,14 +34,6 @@ public class Product {
                 ", stock=" + stock +
                 ", category=" + category.getTitle() +
                 ']';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

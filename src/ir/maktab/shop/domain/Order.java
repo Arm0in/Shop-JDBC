@@ -1,14 +1,14 @@
 package ir.maktab.shop.domain;
 
+import ir.maktab.shop.base.domain.BaseEntity;
+
 import java.time.LocalDate;
 
-public class Order {
-    private int id;
+public class Order extends BaseEntity<Integer> {
     private Customer customer;
     private LocalDate orderDate;
 
-    public Order(int id, Customer customer, LocalDate orderDate) {
-        this.id = id;
+    public Order(Customer customer, LocalDate orderDate) {
         this.customer = customer;
         this.orderDate = orderDate;
     }
@@ -16,18 +16,10 @@ public class Order {
     @Override
     public String toString() {
         return "Order[" +
-                "id=" + id +
+                "id=" + super.getId() +
                 ", customer=" + customer +
                 ", orderDate=" + orderDate +
                 ']';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Customer getCustomer() {

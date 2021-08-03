@@ -1,6 +1,8 @@
 package ir.maktab.shop.domain;
 
-public class Item {
+import ir.maktab.shop.base.domain.BaseEntity;
+
+public class Item extends BaseEntity<Integer> {
     private Product product;
     private int quantity;
 

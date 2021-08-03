@@ -6,6 +6,9 @@ import java.time.LocalDate;
 public class Customer extends User {
     private BigDecimal balance;
 
+    public Customer() {
+    }
+
     public Customer(String userName, String password, String nationalCode, LocalDate birthday, boolean status, BigDecimal balance) {
         super(userName, password, nationalCode, birthday, status);
         this.balance = balance;

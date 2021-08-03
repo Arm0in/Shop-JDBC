@@ -1,12 +1,15 @@
 package ir.maktab.shop.domain;
 
-public class Category {
-    private int id;
+import ir.maktab.shop.base.domain.BaseEntity;
+
+public class Category extends BaseEntity<Integer> {
     private String title;
     private String description;
 
-    public Category(int id, String title, String description) {
-        this.id = id;
+    public Category() {
+    }
+
+    public Category(String title, String description) {
         this.title = title;
         this.description = description;
     }
@@ -14,19 +17,12 @@ public class Category {
     @Override
     public String toString() {
         return "Category[" +
-                "id=" + id +
+                "id=" + super.getId() +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ']';
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
