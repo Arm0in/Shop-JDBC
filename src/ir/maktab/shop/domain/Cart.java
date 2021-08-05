@@ -4,16 +4,16 @@ import ir.maktab.shop.base.domain.BaseEntity;
 
 import java.time.LocalDate;
 
-public class Order extends BaseEntity<Integer> {
+public class Cart extends BaseEntity<Integer> {
     private Customer customer;
-    private LocalDate orderDate;
+    private LocalDate createDate;
 
-    public Order() {
+    public Cart() {
     }
 
-    public Order(Customer customer, LocalDate orderDate) {
+    public Cart(Customer customer, LocalDate orderDate) {
         this.customer = customer;
-        this.orderDate = orderDate;
+        this.createDate = orderDate;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class Order extends BaseEntity<Integer> {
         return "Order[" +
                 "id=" + super.getId() +
                 ", customer=" + customer +
-                ", orderDate=" + orderDate +
+                ", orderDate=" + createDate +
                 ']';
     }
 
@@ -33,11 +33,11 @@ public class Order extends BaseEntity<Integer> {
         this.customer = customer;
     }
 
-    public LocalDate getOrderDate() {
-        return orderDate;
+    public LocalDate getCreateDate() {
+        return createDate;
     }
 
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
     }
 }

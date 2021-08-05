@@ -6,9 +6,9 @@ import java.util.List;
 
 public class SuitablePair {
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>(Arrays.asList(3, 7, 9, 2, 5, 5, 8, 5, 6, 3, 4, 7, 3, 1));
+        List<Integer> list = new ArrayList<>(Arrays.asList(3, 7, 9, 2, 5, 5, 8, 5, 6, 3, 4, 7, 3, 1, 2));
         if (list.size() % 2 != 0)
-            list.remove(list.size());
+            list.remove(list.size() - 1);
         List<Integer> indexes = new ArrayList<>();
         for (int i = 0; i < list.size() - 1; i = i + 2) {
             if (list.get(i) > list.get(i + 1)) {

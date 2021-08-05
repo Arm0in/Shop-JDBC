@@ -1,6 +1,8 @@
 package ir.maktab.shop.view;
 
+import ir.maktab.shop.controller.AdminController;
 import ir.maktab.shop.controller.CustomerController;
+import ir.maktab.shop.domain.Admin;
 import ir.maktab.shop.domain.Customer;
 import ir.maktab.shop.util.Helper;
 
@@ -28,9 +30,9 @@ public class MainMenu extends Menu {
                     CustomerController.register();
                     break;
                 case "3":
-//                    Admin currentAdmin = AdminController.login();
-//                    if (currentAdmin != null)
-//                        new AdminMenu().run(currentAdmin);
+                    Admin currentAdmin = AdminController.login();
+                    if (currentAdmin != null)
+                        new AdminMenu().run(currentAdmin);
                     break;
                 case "4":
                     if (Helper.check("Are you sure you want to exit?"))

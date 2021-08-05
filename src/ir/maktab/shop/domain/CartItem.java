@@ -2,13 +2,18 @@ package ir.maktab.shop.domain;
 
 import ir.maktab.shop.base.domain.BaseEntity;
 
-public class Item extends BaseEntity<Integer> {
+public class CartItem extends BaseEntity<Integer> {
     private Product product;
     private int quantity;
+    private int orderId;
 
-    public Item(Product product, int quantity) {
+    public CartItem() {
+    }
+
+    public CartItem(Product product, int quantity, int orderId) {
         this.product = product;
         this.quantity = quantity;
+        this.orderId = orderId;
     }
 
     @Override
@@ -16,6 +21,7 @@ public class Item extends BaseEntity<Integer> {
         return "CartItem[" +
                 "product=" + product.getName() +
                 ", quantity=" + quantity +
+                ", orderId=" + orderId +
                 ']';
     }
 
@@ -34,5 +40,13 @@ public class Item extends BaseEntity<Integer> {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 }

@@ -2,7 +2,6 @@ package ir.maktab.shop.controller;
 
 import ir.maktab.shop.base.ConnectionInitializer;
 import ir.maktab.shop.domain.Admin;
-import ir.maktab.shop.domain.Customer;
 import ir.maktab.shop.repository.AdminRepository;
 import ir.maktab.shop.repository.impl.AdminRepositoryImpl;
 import ir.maktab.shop.service.AdminService;

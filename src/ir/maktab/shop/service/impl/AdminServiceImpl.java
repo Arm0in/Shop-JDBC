@@ -2,7 +2,6 @@ package ir.maktab.shop.service.impl;
 
 import ir.maktab.shop.base.service.impl.BaseServiceImpl;
 import ir.maktab.shop.domain.Admin;
-import ir.maktab.shop.domain.Customer;
 import ir.maktab.shop.repository.AdminRepository;
 import ir.maktab.shop.service.AdminService;
 

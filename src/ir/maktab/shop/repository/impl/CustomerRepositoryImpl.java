@@ -81,8 +81,15 @@ public class CustomerRepositoryImpl extends BaseRepositoryImpl<Customer, Integer
     }
 
     @Override
-    public void deleteById(Integer integer) {
-
+    public void deleteById(Integer id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("delete from customers where id = ?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

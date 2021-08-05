@@ -1,65 +1,64 @@
 package ir.maktab.shop.repository.impl;
 
 import ir.maktab.shop.base.repository.impl.BaseRepositoryImpl;
-import ir.maktab.shop.controller.CustomerController;
 import ir.maktab.shop.domain.Customer;
-import ir.maktab.shop.domain.Order;
-import ir.maktab.shop.repository.OrderRepository;
+import ir.maktab.shop.domain.Cart;
+import ir.maktab.shop.repository.CartRepository;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
-public class OrderRepositoryImpl extends BaseRepositoryImpl<Order, Integer> implements OrderRepository {
+public class CartRepositoryImpl extends BaseRepositoryImpl<Cart, Integer> implements CartRepository {
 
 
-    public OrderRepositoryImpl(Connection connection) {
+    public CartRepositoryImpl(Connection connection) {
         super(connection);
     }
 
     @Override
-    public Order update(Order order) {
+    public Cart update(Cart cart) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement
                     ("update orders set customer_id = ? where id = ?");
-            preparedStatement.setInt(1, order.getCustomer().getId());
-            preparedStatement.setInt(2, order.getId());
+            preparedStatement.setInt(1, cart.getCustomer().getId());
+            preparedStatement.setInt(2, cart.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return order;
+        return cart;
     }
 
     @Override
-    public Order save(Order order) {
+    public Cart save(Cart cart) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement
                     ("insert into orders (orderdate, customer_id) values (?, ?)");
-            preparedStatement.setInt(1, order.getCustomer().getId());
+            preparedStatement.setInt(1, cart.getCustomer().getId());
             preparedStatement.setDate(2, Date.valueOf(LocalDate.now()));
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return order;
+        return cart;
     }
 
     @Override
-    public Order findById(Integer id) {
+    public Cart findById(Integer id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement
                     ("select * from orders where id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                Order order = new Order();
-                order.setId(resultSet.getInt(1));
-                order.setOrderDate(resultSet.getDate(2).toLocalDate());
+                Cart cart = new Cart();
+                cart.setId(resultSet.getInt(1));
+                cart.setCreateDate(resultSet.getDate(2).toLocalDate());
                 Customer customer = new CustomerRepositoryImpl(connection).findById(resultSet.getInt(3));
-                order.setCustomer(customer);
-                return order;
+                cart.setCustomer(customer);
+                return cart;
             }
             return null;
         } catch (SQLException throwables) {
@@ -69,17 +68,24 @@ public class OrderRepositoryImpl extends BaseRepositoryImpl<Order, Integer> impl
     }
 
     @Override
-    public List<Order> findAll() {
+    public List<Cart> findAll() {
         return null;
     }
 
     @Override
-    public void deleteById(Integer integer) {
-
+    public void deleteById(Integer id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("delete from orders where id = ?");
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
-    public List<Order> findAllById(Collection<Integer> integers) {
+    public List<Cart> findAllById(Collection<Integer> integers) {
         return null;
     }
 
