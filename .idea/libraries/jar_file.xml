@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jar file">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../Maktab/jar file" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../Maktab/jar file" recursive="false" />
+  </library>
+</component>
