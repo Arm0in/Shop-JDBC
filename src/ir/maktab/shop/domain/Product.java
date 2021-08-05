@@ -3,6 +3,7 @@ package ir.maktab.shop.domain;
 import ir.maktab.shop.base.domain.BaseEntity;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Product extends BaseEntity<Integer> {
     private String name;
@@ -11,6 +12,7 @@ public class Product extends BaseEntity<Integer> {
     private BigDecimal price;
     private int stock;
     private Category category;
+    private List<Attribute> attributeList;
 
 
     public Product(int id, String name, String brand, String description, BigDecimal price, int stock, Category category) {
@@ -82,5 +84,13 @@ public class Product extends BaseEntity<Integer> {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<Attribute> getAttributeList() {
+        return attributeList;
+    }
+
+    public void setAttributeList(List<Attribute> attributeList) {
+        this.attributeList = attributeList;
     }
 }

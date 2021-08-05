@@ -23,7 +23,7 @@ public class CustomerMenu extends Menu {
             String chosenItem = scanner.nextLine();
             switch (chosenItem) {
                 case "1":
-                    ProductController.viewAllProducts();
+                    new ProductMenu().run(currentCustomer);
                     break;
                 case "2":
                     CustomerController.chargeAccount(currentCustomer);

@@ -12,8 +12,7 @@ import java.util.Scanner;
 public class AdminController {
 
     private static Scanner scanner = new Scanner(System.in);
-    private static AdminRepository repository = new AdminRepositoryImpl(ConnectionInitializer.connect());
-    private static AdminService service = new AdminServiceImpl(repository);
+    private static AdminService service = new AdminServiceImpl(new AdminRepositoryImpl(ConnectionInitializer.connect()));
 
     public static Admin login() {
         System.out.println("Please enter your Username: ");
