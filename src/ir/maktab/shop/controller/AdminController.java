@@ -21,10 +21,13 @@ public class AdminController {
         System.out.println("Please enter your Password: ");
         String password = scanner.nextLine();
         Admin admin = service.login(username, password);
-        if (admin == null)
+        if (admin == null) {
             System.out.println("Incorrect Login credentials!");
-        if (!admin.isStatus())
+            return null;
+        } else if (!admin.isStatus()) {
             System.out.println("Your account is not active!");
+            return null;
+        }
         return admin;
     }
 }
