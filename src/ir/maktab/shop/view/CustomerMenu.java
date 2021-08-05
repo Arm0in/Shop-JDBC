@@ -1,5 +1,6 @@
 package ir.maktab.shop.view;
 
+import ir.maktab.shop.controller.CartController;
 import ir.maktab.shop.controller.CustomerController;
 import ir.maktab.shop.controller.ProductController;
 import ir.maktab.shop.domain.Customer;
@@ -28,7 +29,8 @@ public class CustomerMenu extends Menu {
                     CustomerController.chargeAccount(currentCustomer);
                     break;
                 case "3":
-//                    new CartMenu().run(currentCustomer);
+                    CartController.createCart(currentCustomer);
+                    new ShopMenu().run(currentCustomer);
                     break;
                 case "4":
                     if (Helper.check("Are you sure you want to Logout?"))

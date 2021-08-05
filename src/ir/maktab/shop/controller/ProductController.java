@@ -12,8 +12,7 @@ import java.util.Scanner;
 
 public class ProductController {
     private static Scanner scanner = new Scanner(System.in);
-    private static ProductRepository repository = new ProductRepositoryImpl(ConnectionInitializer.connect());
-    private static ProductService service = new ProductServiceImpl(repository);
+    private static ProductService service = new ProductServiceImpl(new ProductRepositoryImpl(ConnectionInitializer.connect()));
 
     public static void viewAllProducts() {
         List<Product> products = service.findAll();
@@ -22,5 +21,15 @@ public class ProductController {
             System.out.println(product);
         }
     }
+
+    public static Product getProductById(Integer id) {
+        return service.findById(id);
+    }
+
+    public static void updateProduct(Product product) {
+        service.update(product);
+    }
+
+
 
 }

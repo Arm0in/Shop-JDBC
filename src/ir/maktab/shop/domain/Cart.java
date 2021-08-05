@@ -11,17 +11,17 @@ public class Cart extends BaseEntity<Integer> {
     public Cart() {
     }
 
-    public Cart(Customer customer, LocalDate orderDate) {
+    public Cart(Customer customer, LocalDate createDate) {
         this.customer = customer;
-        this.createDate = orderDate;
+        this.createDate = createDate;
     }
 
     @Override
     public String toString() {
-        return "Order[" +
+        return "Cart[" +
                 "id=" + super.getId() +
                 ", customer=" + customer +
-                ", orderDate=" + createDate +
+                ", createDate=" + createDate +
                 ']';
     }
 

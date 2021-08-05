@@ -5,26 +5,25 @@ import ir.maktab.shop.base.domain.BaseEntity;
 public class CartItem extends BaseEntity<Integer> {
     private Product product;
     private int quantity;
-    private int orderId;
+    private Cart cart;
 
     public CartItem() {
     }
 
-    public CartItem(Product product, int quantity, int orderId) {
-        this.product = product;
-        this.quantity = quantity;
-        this.orderId = orderId;
-    }
-
     @Override
     public String toString() {
-        return "CartItem[" +
-                "product=" + product.getName() +
+        return "CartItem{" +
+                "product=" + product +
                 ", quantity=" + quantity +
-                ", orderId=" + orderId +
-                ']';
+                ", cart id=" + cart.getId() +
+                '}';
     }
 
+    public CartItem(Product product, int quantity, Cart cart) {
+        this.product = product;
+        this.quantity = quantity;
+        this.cart = cart;
+    }
 
     public Product getProduct() {
         return product;
@@ -42,11 +41,11 @@ public class CartItem extends BaseEntity<Integer> {
         this.quantity = quantity;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

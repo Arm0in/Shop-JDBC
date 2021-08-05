@@ -1,5 +1,7 @@
 package ir.maktab.shop.view;
 
+import ir.maktab.shop.controller.CartController;
+import ir.maktab.shop.controller.CartItemController;
 import ir.maktab.shop.domain.Customer;
 
 public class ShopMenu extends Menu {
@@ -19,19 +21,19 @@ public class ShopMenu extends Menu {
             String chosenItem = scanner.nextLine();
             switch (chosenItem) {
                 case "1":
-//                    CartController.addToCart();
+                    CartItemController.addToCart(currentCustomer);
                     break;
                 case "2":
-//                    CartController.removeFromCart();
+                    CartItemController.removeFromCart(currentCustomer);
                     break;
                 case "3":
-//                    CartController.viewCart();
+                    CartController.viewCart(currentCustomer);
                     break;
                 case "4":
-//                    System.out.println("Total Sum = " + CartController.cartTotalCost());
+                    System.out.println("Total Sum = " + CartController.cartTotalCost(currentCustomer));
                     break;
                 case "5":
-//                    CartController.checkout(currentCustomer);
+                    CartController.checkout(currentCustomer);
                     break;
                 default:
                     System.out.println("Wrong!");

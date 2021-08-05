@@ -21,7 +21,7 @@ public class CartRepositoryImpl extends BaseRepositoryImpl<Cart, Integer> implem
     public Cart update(Cart cart) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement
-                    ("update orders set customer_id = ? where id = ?");
+                    ("update carts set customer_id = ? where id = ?");
             preparedStatement.setInt(1, cart.getCustomer().getId());
             preparedStatement.setInt(2, cart.getId());
             preparedStatement.executeUpdate();
@@ -35,9 +35,9 @@ public class CartRepositoryImpl extends BaseRepositoryImpl<Cart, Integer> implem
     public Cart save(Cart cart) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement
-                    ("insert into orders (orderdate, customer_id) values (?, ?)");
-            preparedStatement.setInt(1, cart.getCustomer().getId());
-            preparedStatement.setDate(2, Date.valueOf(LocalDate.now()));
+                    ("insert into carts (createdate, customer_id) values (?, ?)");
+            preparedStatement.setDate(1, Date.valueOf(LocalDate.now()));
+            preparedStatement.setInt(2, cart.getCustomer().getId());
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -49,7 +49,7 @@ public class CartRepositoryImpl extends BaseRepositoryImpl<Cart, Integer> implem
     public Cart findById(Integer id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement
-                    ("select * from orders where id = ?");
+                    ("select * from carts where id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -76,7 +76,7 @@ public class CartRepositoryImpl extends BaseRepositoryImpl<Cart, Integer> implem
     public void deleteById(Integer id) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement
-                    ("delete from orders where id = ?");
+                    ("delete from carts where id = ?");
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
@@ -94,4 +94,24 @@ public class CartRepositoryImpl extends BaseRepositoryImpl<Cart, Integer> implem
         return null;
     }
 
+    @Override
+    public Cart findCustomerCart(Customer customer) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("select * from carts where customer_id = ?");
+            preparedStatement.setInt(1, customer.getId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                Cart cart = new Cart();
+                cart.setId(resultSet.getInt(1));
+                cart.setCreateDate(resultSet.getDate(2).toLocalDate());
+                cart.setCustomer(customer);
+                return cart;
+            }
+            return null;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
+    }
 }

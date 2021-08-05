@@ -82,4 +82,8 @@ public class CustomerController {
         service.update(customer);
     }
 
+    public static void updateCustomer(Customer customer) {
+        service.update(customer);
+    }
+
 }
